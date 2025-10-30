@@ -1,0 +1,16 @@
+{
+    "name": "fm737/td13",
+    "autoload": {
+        "psr-4": {
+            "Fm737\\Td13\\": "src/",
+            "iutnc\\deefy\\": "src/classes/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Fahim Meziani",
+            "email": "fahim.meziani5@etu.univ-lorraine.fr"
+        }
+    ],
+    "require": {}
+}

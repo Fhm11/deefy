@@ -4,21 +4,22 @@ namespace iutnc\deefy\repository;
 
 
 use iutnc\deefy\audio\lists\Playlist;
+use iutnc\deefy\audio\tracks\AudioTrack;
 use PDO;
 
 class DeefyRepository
 {
-    private \PDO $pdo;
+    private PDO $pdo;
     private static ?DeefyRepository $instance = null;
     private static array $config = [];
 
     private function __construct(array $conf)
     {
-        $this->pdo = new \PDO(
+        $this->pdo = new PDO(
             $conf['dsn'],
             $conf['user'],
             $conf['pass'],
-            [\PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION]
+            [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
         );
     }
 
@@ -81,6 +82,49 @@ class DeefyRepository
         ]);
         return (int)$this->pdo->lastInsertId();
     }
+
+    public function findPlaylistById(int $id): Playlist {
+    // Récupération des informations de la playlist
+    $stmt = $this->pdo->prepare("SELECT * FROM playlist WHERE id = :id");
+    $stmt->execute(['id' => $id]);
+    $data = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if (!$data) {
+        throw new \Exception("Playlist introuvable avec l'ID $id");
+    }
+
+    // Création de l'objet Playlist
+    $pl = new Playlist($data['nom']);
+    $pl->id = (int)$data['id']; 
+
+    // Chargement des pistes associées à la playlist
+    $stmtTracks = $this->pdo->prepare("
+        select t.* 
+        from track t
+        join playlist2track p2t on t.id = p2t.id_track
+        where p2t.id_pl = :id
+    ");
+    $stmtTracks->execute(['id' => $id]);
+    $tracks = $stmtTracks->fetchAll(PDO::FETCH_ASSOC);
+
+    // Ajout des pistes dans la playlist
+    foreach ($tracks as $t) {
+        $track = new AudioTrack(
+            $t['titre'],
+            $t['filename']
+        );
+        $track->setAuteur($t['artiste_album'] ?? "Inconnu");
+        $track->setGenre($t['genre'] ?? "Inconnu");
+        $track->setDuree((int)($t['duree'] ?? 0));
+
+        // Ajout de la piste à la playlist
+        $pl->ajouterPiste($track);
+    }
+
+    return $pl;
+}
+
+
 
 
     public function getPdo(): PDO

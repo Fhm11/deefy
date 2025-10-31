@@ -18,9 +18,6 @@ class Dispatcher
     {
         $html = "";
         switch ($this->action) {
-            case 'playlist':
-                $html = (new action\DisplayPlaylistAction())();
-                break;
             case 'add-playlist':
                 $html = (new action\AddPlaylistAction())();
                 break;
@@ -32,6 +29,9 @@ class Dispatcher
                 break;
             case 'add-user':
                 $html = (new action\AddUserAction())();
+                break;
+            case 'display-playlist':
+                $html = (new action\DisplayPlaylistAction())();
                 break;
             default:
                 $html = (new action\DefaultAction())();
@@ -45,16 +45,17 @@ class Dispatcher
         <!DOCTYPE html>
         <html lang="fr">
         <head>
-            <title>JSP</title>
+            <title>Deefy</title>
         </head>
         <body>
         <ul>
-            <li><a href='?action=playlist'>Accueil</a> </li>
-            <li><a href='?action=playlist'>Afficher la playlist</a> </li>
+            <li><a href='?action=default'>Accueil</a> </li>
             <li><a href='?action=add-playlist'>Ajouter une playlist</a> </li>
             <li><a href='?action=add-track'>Ajouter une piste de podcast</a></li>
             <li><a href='?action=signin'>connecte toi</a></li>
             <li><a href='?action=add-user'>inscris toi</a></li>
+            <li><a href='?action=display-playlist&id=1'>Afficher la playlist 1</a></li>
+
         </ul>
         $html
         </body>

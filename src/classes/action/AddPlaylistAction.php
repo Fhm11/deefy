@@ -11,13 +11,6 @@ class AddPlaylistAction extends Action {
         return $this->afficherFormulaire();
     }
 
-    //     public function __invoke():string{
-    //     if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    //         return $this->execute();
-    //     } else {
-    //        return "methode non autorisée";
-    //     }
-    // }
 
     public function afficherFormulaire(): string {
         return <<<HTML
@@ -31,29 +24,6 @@ class AddPlaylistAction extends Action {
         HTML;
     }
 
-    // private function traiterFormulaire(): string {
-    // $nom = isset($_POST['nom']) ? (string)$_POST['nom'] : '';
-    // $nom = filter_var($nom, FILTER_SANITIZE_SPECIAL_CHARS);
-
-    //     if ($nom === '') {
-    //         return '<p>Le nom est obligatoire.</p>' . $this->afficherFormulaire();
-    //     }
-    //     $playlist = new Playlist($nom);
-    //     // Persister la playlist en base de données
-    //     try {
-    //         $repo = DeefyRepository::getInstance();
-    //         $playlist = $repo->saveEmptyPlaylist($playlist);
-    //     } catch (\Exception $e) {
-    //         // si échec, on continue en session mais on signale l'erreur
-    //         $_SESSION['flash_error'] = 'Impossible de sauvegarder la playlist en base : ' . $e->getMessage();
-    //     }
-    //     $_SESSION['playlist'] = $playlist;
-    //     $renderer = new AudioListRenderer($playlist);
-    //     $htmlPlaylist = $renderer->render(\iutnc\deefy\render\Renderer::COMPACT);
-    //     $htmlPlaylist .= '<p><a href="?action=add-track">Ajouter une piste</a></p>';
-
-    //     return $htmlPlaylist;
-    // }
 
     private function traiterFormulaire(): string {
         $nom = isset($_POST['nom']) ? filter_var($_POST['nom'], FILTER_SANITIZE_SPECIAL_CHARS) : '';

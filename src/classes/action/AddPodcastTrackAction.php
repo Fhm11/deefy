@@ -4,7 +4,6 @@ namespace iutnc\deefy\action;
 
 use iutnc\deefy\audio\tracks\PodcastTrack;
 use iutnc\deefy\render\AudioListRenderer;
-use iutnc\deefy\audio\lists\Playlist;
 use iutnc\deefy\render\Renderer;
 use iutnc\deefy\repository\DeefyRepository;
 
@@ -46,7 +45,7 @@ class AddPodcastTrackAction extends Action
             $track->id = $trackId;
         }
         if ($trackId === 0) {
-            $message = '<p>sa existe deja</p>';
+            $message = '<p> existe deja</p>';
         } else {
             $track->id = $trackId;
             $message = '<p>c ajouter</p>';
@@ -85,9 +84,8 @@ class AddPodcastTrackAction extends Action
     {
         if ($this->http_method === 'GET') {
             return $this->afficherFormulaire();
-        } elseif ($this->http_method === 'POST') {
+        } else{
             return $this->traiterFormulaire();
         }
-        return '<p>jsp</p>';
     }
 }

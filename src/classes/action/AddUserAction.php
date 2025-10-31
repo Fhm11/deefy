@@ -29,12 +29,12 @@ class AddUserAction extends Action {
         $passwd2 = $_POST['passwd2'] ?? '';
 
         if ($passwd !== $passwd2) {
-            return "<p style='color:red;'>no.</p>";
+            return "<p> Pas les meme mdp </p>";
         }
 
         try {
             AuthnProvider::register($email, $passwd);
-            return "<p>gg wp t inscris <b>{$email}</b></p>";
+            return "<p> Inscription réussi <b>{$email}</b></p>";
         } catch (AuthnException $e) {
             return "<p {$e->getMessage()}</p>";
         }
@@ -46,6 +46,6 @@ class AddUserAction extends Action {
         } elseif ($this->http_method === 'POST') {
             return $this->execute();
         }
-        return '<p>jsp</p>';
+        return '<p>Méthode pas autorisé</p>';
     }
 }

@@ -44,4 +44,12 @@ class AuthnProvider {
         $stmt = $pdo->prepare("INSERT INTO user (email, passwd, role) VALUES (?, ?, 1)");
         $stmt->execute([$email, $hash]);
     }
+
+    public static function getSignedInUser(): array {
+    if (!isset($_SESSION['user'])) {
+        throw new AuthnException("Aucun utilisateur authentifié.");
+    }
+    return $_SESSION['user'];
+}
+
 }

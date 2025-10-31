@@ -26,7 +26,7 @@ class SigninAction extends Action {
             $email = $_POST['email'] ?? '';
             $passwd = $_POST['passwd'] ?? '';
             AuthnProvider::signin($email, $passwd);
-            return "<p>gg wp t co <b>{$email}</b> !</p>";
+            return "<p> Connextion réussi <b>{$email}</b> !</p>";
         } catch (AuthnException $e) {
             return "<p {$e->getMessage()}</p>";
         }
@@ -38,6 +38,6 @@ class SigninAction extends Action {
         } elseif ($this->http_method === 'POST') {
             return $this->execute();
         }
-        return '<p>jsp</p>';
+        return '<p>Méthode pas autorisé</p>';
     }
 }

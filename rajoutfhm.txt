@@ -1,0 +1,11 @@
+question 1) j ccree PlayistUser Dans cette action :
+
+Vérifier que l’utilisateur est connecté via AuthnProvider::getSignedInUser().
+
+Récupérer les playlists associées à l’utilisateur dans la table user2playlist.
+
+Afficher la liste sous forme de liens cliquables (?action=display-playlist&id=...).
+
+Si l’utilisateur clique sur une playlist, elle devient playlist courante (stockée en session).
+
+plus le rajout dans dispatcher

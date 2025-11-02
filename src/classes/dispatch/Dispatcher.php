@@ -33,6 +33,9 @@ class Dispatcher
             case 'display-playlist':
                 $html = (new action\DisplayPlaylistAction())();
                 break;
+            case 'my-playlists': 
+                $html = (new action\PlayistUser())();
+                break;
             default:
                 $html = (new action\DefaultAction())();
         }
@@ -55,6 +58,7 @@ class Dispatcher
             <li><a href='?action=signin'>connecte toi</a></li>
             <li><a href='?action=add-user'>inscris toi</a></li>
             <li><a href='?action=display-playlist&id=1'>Afficher la playlist 1</a></li>
+            <li><a href='?action=my-playlists'>Mes playlists</a></li>
 
         </ul>
         $html

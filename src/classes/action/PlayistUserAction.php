@@ -7,7 +7,7 @@ use iutnc\deefy\auth\AuthnProvider;
 use iutnc\deefy\repository\DeefyRepository;
 use iutnc\deefy\audio\lists\Playlist;
 
-class PlayistUser extends Action
+class PlayistUserAction extends Action
 {
     public function execute(): string {
         // verif si utilisateur connecté
@@ -35,16 +35,15 @@ class PlayistUser extends Action
             return "<p>0 playist</p>";
         }
 
-        // affiche ces playsits
+        // Affiche les playlists avec lien 
         $html = "<h2>Mes playlists</h2><ul>";
         foreach ($playlists as $pl) {
-            $html .= "<li><a href='?action=display-playlist&id={$pl['id']}'>{$pl['nom']}</a></li>";
+            $html .= "<li><a href='?action=set-current-playlist&id={$pl['id']}'>" .$pl['nom'] . "</a></li>";
         }
         $html .= "</ul>";
 
         return $html;
     }
-
     public function __invoke(): string {
         if ($this->http_method === 'GET') {
             return $this->execute();

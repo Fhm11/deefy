@@ -8,6 +8,9 @@ use iutnc\deefy\repository\DeefyRepository;
 class AddPlaylistAction extends Action {
 
     public function execute(): string {
+        if ($this->http_method === 'POST') {
+            return $this->traiterFormulaire();
+        }
         return $this->afficherFormulaire();
     }
 
@@ -41,6 +44,7 @@ class AddPlaylistAction extends Action {
         $html .= '<p><a href="?action=add-track">Ajouter une piste</a></p>';
         return $html;
     }
+    
 
     public function __invoke(): string {
         if ($this->http_method === 'GET') {

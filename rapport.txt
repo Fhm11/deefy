@@ -1,0 +1,97 @@
+Présentation des fonctionnalités de l’application Deefy
+
+1. Mes playlists
+
+Affiche la liste complète des playlists appartenant à l’utilisateur actuellement authentifié.
+
+Chaque playlist est présentée sous forme de liste cliquable.
+
+L’utilisateur peut sélectionner une playlist pour la rendre “courante” et la stocker en session.
+
+Cette fonctionnalité est sécurisée : seuls les utilisateurs authentifiés peuvent y accéder.
+
+2. Sélection et affichage d’une playlist
+
+Chaque élément de la liste de playlists est cliquable.
+
+Lorsqu’une playlist est sélectionnée, elle devient la playlist courante stockée en session.
+
+L’utilisateur peut visualiser toutes les pistes contenues dans cette playlist 
+
+Les pistes affichent leur titre, auteur, durée et type.
+
+3. Ajouter une piste à une playlist
+
+Accessible uniquement lorsque l’utilisateur a une playlist courante et que c est la sienne.
+
+Un formulaire permet de saisir les informations de la piste : titre, auteur, genre, durée et chemin/fichier audio.
+
+Une fois le formulaire validé, la piste est :
+
+Ajoutée à la playlist en session.
+
+Stockée en base de données 
+
+La fonctionnalité prend en compte la sécurité contre les injections et le XSS en filtrant toutes les saisies utilisateur.
+
+4. Créer une playlist vide
+
+Permet à l’utilisateur de créer une nouvelle playlist avec un nom personnalisé.
+
+La playlist créée est stockée dans la base de données.
+
+La nouvelle playlist devient la playlist courante en session.
+
+L’utilisateur peut directement ajouter des pistes à cette playlist via un lien rapide.
+
+5. Afficher la playlist courante
+
+Permet de visualiser la playlist actuellement stockée en session.
+
+Affichage des pistes avec leurs informations détaillées.
+
+uniquement si l’utilisateur propriétaire.
+
+6. S’inscrire
+
+Création d’un compte utilisateur standard automatiquement.
+
+Le formulaire d’inscription demande un email et un mot de passe.
+
+Le mot de passe est stocké de manière sécurisée avec un hashage.
+
+Les contrôles empêchent la création de comptes avec un email déjà existant.
+
+7. S’authentifier
+
+Permet aux utilisateurs existants de se connecter via email et mot de passe.
+
+Vérification sécurisée du mot de passe avec password_verify.
+
+Stockage des informations de l’utilisateur en session après connexion réussie.
+
+8. Sécurité générale
+
+Toutes les fonctionnalités nécessitant une action utilisateur sont protégées par authentification.
+
+Les opérations sensibles (ajout de piste, création de playlist) regarde l’utilisateur a les droits.
+
+Protection contre l’injection SQL avec PDO et requêtes préparées.
+
+Filtrage des entrées utilisateur pour éviter les attaques XSS.
+
+9. Interface et rendu
+
+du css a ete rajouter pour rendre sa plus beau est lisible dans renderpage.
+
+Les liens permettent de naviguer facilement entre playlists et pistes.
+
+CSS  inspiré d’un style type Spotify.
+
+10. Fonctionnalités avancées
+
+Gestion des podcasts avec un type spécifique de piste (PodcastTrack) contenant la date de publication.
+
+Rendu compact et détaillé pour chaque piste via des classes Renderer.
+
+Gestion des playlists en session pour conserver l’état courant de l’utilisateur.

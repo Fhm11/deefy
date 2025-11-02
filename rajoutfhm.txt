@@ -19,3 +19,7 @@ j cree addtrack
 
 question 4)
 modif de addplayistaction
+
+5 6 7 deja fait
+
+et ajout css

@@ -10,7 +10,8 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-iutnc\deefy\repository\DeefyRepository::setConfig('db.ini');
+iutnc\deefy\repository\DeefyRepository::setConfig('/users/home/e28145u/db.ini');
+
 
 
 $action=(isset($_GET['action'])) ? $_GET['action'] : 'default';

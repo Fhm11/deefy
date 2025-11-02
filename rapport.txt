@@ -95,3 +95,7 @@ Gestion des podcasts avec un type spécifique de piste (PodcastTrack) contenant 
 Rendu compact et détaillé pour chaque piste via des classes Renderer.
 
 Gestion des playlists en session pour conserver l’état courant de l’utilisateur.
+
+11. Test
+
+tout les test ont ete fait avec mail:user1@mail.com mdp:user1
